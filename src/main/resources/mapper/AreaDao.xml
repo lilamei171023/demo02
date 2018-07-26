@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xust.demo.dao">
+    <select id="queryArea" resultMap="com.xust.demo.entity.Area">
+      SELECT  id,'name',priority,create_time
+      FROM demo02.area ORDER  BY priority DESC
+    </select>
+    <select id="queryAreaById" resultType="com.xust.demo.entity.Area">
+      SELECT id,'name',priority,create_time
+      FROM demo02.area WHERE id=#{id}
+    </select>
+    <insert id="insertArea" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.xust.demo.entity.Area">
+     INSERT  INTO demo02.area('name',priority,create_time)
+     VALUES (#{name},#{priority},#{createTime})
+    </insert>
+    <update id="updateArea" parameterType="com.xust.demo.entity.Area">
+     UPDATE demo02.area
+        <set>
+            <if test="name!=null">'name'=#{name}</if>
+            <if test="priority!=null"> priority=#{priority}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+    <delete id="deleteArea">
+        DELETE FROM demo02.area
+        WHERE id=#{id}
+    </delete>
+</mapper>
