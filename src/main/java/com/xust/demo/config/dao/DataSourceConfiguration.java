@@ -6,8 +6,7 @@ package com.xust.demo.config.dao;
 public class DataSourceConfiguration {
 
 
-    public void createDateSource() {
+    public void createDateSource(){
         System.out.println("change something!");
-
     }
 }
